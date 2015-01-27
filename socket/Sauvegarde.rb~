@@ -43,9 +43,9 @@ class Sauvegarde
 		puts ("#{a} \n\n")
 		b=  a.toMarsh	
 		#puts b
-		#c = Sauvegarde.fromMarsh(b)
+		c = Sauvegarde.fromMarsh(b)
 		#print "\n"
-		#puts c
+		puts c
 		a.envoi
 		
 	end

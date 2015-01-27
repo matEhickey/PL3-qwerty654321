@@ -44,7 +44,7 @@ end
 				
 				#print line
 				begin
-					print "Recu de\t#{client} :\n"
+					print "Recu de #{client} :\t"
 					puts Sauvegarde.fromMarsh(line)
 				rescue
 					puts "Probleme avec Sauvegarde.fromMarsh"
