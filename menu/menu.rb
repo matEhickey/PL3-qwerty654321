@@ -4,6 +4,7 @@
 # auteur :Groupe 2
 
 require 'gtk2'
+require './../Partie/partie.rb'
 
 def nouvPartie() 
 	puts "nouvPartie, A faire :"
@@ -14,13 +15,11 @@ def nouvPartie()
 	puts "appel a partie.rb avec la grille initialisee comme argument"
 	
 	
-	load './../Partie/partie.rb'	#mauvaise methode, car :
-					#quand on arrete ce processus il bug, 
-					#et quand on recommence il ferme aussi le menu 
+	partie = Partie.new()	#mauvaise methode, car :
+					
+					#quand on recommence il ferme aussi le menu 
 					#surement a cause de l'appel a gtk.main_quit
 	
-					#et il empeche d'utiliser menu pendant son execution
-					#utilisation des thread suremnt, erreur chelou avec fork{}
 	
 	
 end

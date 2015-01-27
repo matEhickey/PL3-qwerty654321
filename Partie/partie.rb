@@ -8,7 +8,7 @@ require 'gtk2'
 
 
 
-class Builder < Gtk::Builder
+class Partie < Gtk::Builder
 
 	
   def initialize 
@@ -71,6 +71,6 @@ class Builder < Gtk::Builder
 
 end
 
-Gtk.init
-builder = Builder.new()
-Gtk.main
+#Gtk.init
+#partie = Partie.new()
+#Gtk.main
