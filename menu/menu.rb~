@@ -1,0 +1,81 @@
+# encoding: UTF-8
+
+##
+# auteur :Groupe 2
+
+require 'gtk2'
+
+def nouvPartie() 
+	puts "nouvPartie, A faire :"
+	puts "creation d'une dialogBox pour demander au joueur le niveau, et la taille de la grille"
+	puts "creation grille, et initialisation avec fichier:"
+	#parcourir fich jusqu'a trouver niveau = choix, puis jusqu'a taille = choix, compter nombre de grille correspondant au choix, puis rand
+	
+	puts "appel a partie.rb avec la grille initialisee comme argument"
+	
+	
+	load 'partie.rb'	#mauvaise methode, car :
+					#quand on arrete ce processus il bug, 
+					#et quand on recommence il ferme aussi le menu 
+					#surement a cause de l'appel a gtk.main_quit
+	
+					#et il empeche d'utiliser menu pendant son execution
+					#utilisation des thread suremnt, erreur chelou avec fork{}
+	
+	
+end
+
+def reprendrePartie()
+	puts "reprendrePartie, A faire:"
+	puts "charger grille du fichier sauvegardé, et le score/temps"
+	puts "pour cela, appel personalisé au fichier partie.rb"
+end
+
+def showHigh()
+	puts "showHigh, A faire:"
+	puts "-creation d'un dialogue box ou d'une nouvelle fenetre?"
+	puts "\t Dans highscore.rb"
+	puts "\t cherhcer existence du fichier de sauvegarde"
+	puts "\t si present :"
+	puts "\t en faire un affichage en liste trié par niveau, par score ou temps"
+	puts "\t et faire fonction permettant d'y inscrire un nouveau score"
+	
+end
+
+def onDestroy()
+	puts "onDestroy, a faire:"
+	puts "fermeture de toutes les fenetres filles lancées"
+	Gtk.main_quit
+end
+
+class Builder < Gtk::Builder
+
+	
+  def initialize 
+    super()
+    self.add_from_file(__FILE__.sub(".rb",".glade"))
+    
+    self['window1'].set_window_position Gtk::Window::POS_CENTER
+    self['window1'].signal_connect('destroy') { Gtk.main_quit }
+    self['window1'].show_all
+    
+    # Creation d'une variable d'instance par composant glade
+    puts "Objets instanciés:"
+    self.objects.each() { |p|
+    	puts "\t#{p}"
+        instance_variable_set("@#{p.builder_name}".intern, self[p.builder_name])
+     }
+    puts "\nSignaux connectés:"
+     self.connect_signals{ |handler| 
+        puts "\t#{handler}"
+        method(handler)
+      }
+  end
+
+
+
+end
+
+Gtk.init
+builder = Builder.new()
+Gtk.main
