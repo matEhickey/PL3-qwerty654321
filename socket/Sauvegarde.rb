@@ -59,7 +59,9 @@ class Sauvegarde
 			exit
 		end
 		begin
-			serveur.print(self.toMarsh)
+			 message = self.toMarsh
+			 #puts "Envoi #{message}"
+			 serveur.puts message
 		rescue
 			puts "Impossible d'ecrire au serveur"
 		ensure

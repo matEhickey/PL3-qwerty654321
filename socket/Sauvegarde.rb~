@@ -11,7 +11,7 @@ class Sauvegarde
 	@fini	#Booleen
 	@grille
 	
-	attr_reader :joueur, :grille
+	attr_reader :joueur, :fini
 	
 	def initialize(joueur,grille,score,temps,fini)
 		@joueur,@score,@temps,@fini,@grille= joueur,score,temps,fini,grille
@@ -59,7 +59,9 @@ class Sauvegarde
 			exit
 		end
 		begin
-			serveur.print(self.toMarsh)
+			 message = self.toMarsh
+			 puts "Envoi #{message}"
+			 serveur.puts message
 		rescue
 			puts "Impossible d'ecrire au serveur"
 		ensure
