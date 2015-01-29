@@ -18,7 +18,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button_valider">
-                <property name="label" translatable="yes">Valider</property>
+                <property name="label" translatable="yes">Previsualiser</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
@@ -32,7 +32,19 @@
               </packing>
             </child>
             <child>
-              <placeholder/>
+              <object class="GtkButton" id="button1">
+                <property name="label" translatable="yes">Choisir cet avatar</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="use_action_appearance">False</property>
+                <signal name="clicked" handler="envoi" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
             </child>
           </object>
           <packing>
@@ -57,6 +69,7 @@
     </child>
     <action-widgets>
       <action-widget response="0">button_valider</action-widget>
+      <action-widget response="0">button1</action-widget>
     </action-widgets>
   </object>
 </interface>

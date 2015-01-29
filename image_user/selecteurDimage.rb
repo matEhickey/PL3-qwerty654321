@@ -9,16 +9,22 @@ require 'gtk2'
 
 
 
-class Builder < Gtk::Builder
+class SelecteurDimage < Gtk::Builder
 
+	@tube
 	
-  def initialize 
+  def initialize(tubeEcriture)
     super()
+    @tube = tubeEcriture
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
     #self['filechooserdialog1'].set_window_position Gtk::Window::POS_CENTER
-    self['filechooserdialog1'].signal_connect('destroy') { Gtk.main_quit }
+    self['filechooserdialog1'].signal_connect('destroy') { @filechooserdialog1.destroy }
     self['filechooserdialog1'].show_all
+    
+    @filter = Gtk::FileFilter.new
+    @filter.add_pattern("*.jpg")
+    self['filechooserdialog1'].filter = @filter
     
     # Creation d'une variable d'instance par composant glade
     self.objects.each() { |p|
@@ -43,17 +49,16 @@ class Builder < Gtk::Builder
       		rescue
       			puts "probleme chargement image #{image_file_name}"
       		end
-
-      		
-      		
-      		
-      		
-      		
-      		
+		
+      end
+      
+      def envoi()
+      	@tube.puts @filechooserdialog1.filename
+        @filechooserdialog1.destroy
       end
 
 end
 
-Gtk.init
-builder = Builder.new()
-Gtk.main
+#Gtk.init
+#selecteurDimage = SelecteurDimage.new()
+#Gtk.main

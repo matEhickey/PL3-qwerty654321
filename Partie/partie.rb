@@ -4,21 +4,23 @@
 # Auteur Groupe 2
 
 require 'gtk2'
+require './../socket/Sauvegarde.rb'
+require './../Dialog_sauvegarde/dialoogBox.rb'
 
 
 
 
 class Partie < Gtk::Builder
-
+	@sauvegarde
 	
   def initialize 
     super()
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
     self['window1'].set_window_position Gtk::Window::POS_CENTER
-    self['window1'].signal_connect('destroy') { Gtk.main_quit }
+    self['window1'].signal_connect('destroy') { onDestroy }
     self['window1'].show_all
-    
+    @sauvegarde = Sauvegarde.new("Mathias",1,30,30,true)
     # Creation d'une variable d'instance par composant glade
     i=1
     self.objects.each() { |p|
@@ -59,8 +61,9 @@ class Partie < Gtk::Builder
 		puts "OnDestroy, A faire:"	
 		puts "Verification que l'utilisateur a une sauvegarde equivalente a la grille actuelle"
 		puts "\tet si non : dialogBox pour demander s'il veut sauvegarder"
-		
-		Gtk.main_quit
+		dialoog = DialoogBox.new(@sauvegarde)
+		#self['window1'].hide
+		#Gtk.main_quit
 	end
 
 	

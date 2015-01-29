@@ -9,15 +9,16 @@ class Sauvegarde
 	@score	#Compteur de points
 	@temps	#Temps en seconde
 	@fini	#Booleen
+	@grille
 	
+	attr_reader :joueur, :fini
 	
-	
-	def initialize(joueur,score,temps,fini)
-		@joueur,@score,@temps,@fini= joueur,score,temps,fini
+	def initialize(joueur,grille,score,temps,fini)
+		@joueur,@score,@temps,@fini,@grille= joueur,score,temps,fini,grille
 	end
 	
-	def Sauvegarde.creer(joueur,score,temps,fini)
-		new(joueur,score,temps,fini);
+	def Sauvegarde.creer(joueur,grille,score,temps,fini)
+		new(joueur,grille,score,temps,fini);
 	end
 	
 	def toMarsh
@@ -39,7 +40,7 @@ class Sauvegarde
 	end
 	
 	def Sauvegarde.test
-		a = Sauvegarde.creer("Mathias",100,30,false);
+		a = Sauvegarde.creer("Mathias",1,100,30,false);
 		puts ("#{a} \n\n")
 		b=  a.toMarsh	
 		#puts b
@@ -73,7 +74,7 @@ class Sauvegarde
 	end
 	
 	def to_s
-		return "Sauvegarde de #{@joueur}: score=#{@temps} temps=#{@temps}   fini ?#{@fini}"
+		return "Sauvegarde de #{@joueur}: \nGrille : #{@grille} score=#{@temps} temps=#{@temps}   fini ?#{@fini}"
 	end
 end
 

@@ -15,7 +15,8 @@ def nouvPartie()
 	puts "appel a partie.rb avec la grille initialisee comme argument"
 	
 	
-	partie = Partie.new()	#mauvaise methode, car :
+		partie = Partie.new()	#mauvaise methode, car :
+	
 					
 					#quand on recommence il ferme aussi le menu 
 					#surement a cause de l'appel a gtk.main_quit
@@ -28,13 +29,14 @@ def reprendrePartie()
 	puts "reprendrePartie, A faire:"
 	puts "charger grille du fichier sauvegardé, et le score/temps"
 	puts "pour cela, appel personalisé au fichier partie.rb"
+	
 end
 
 def showHigh()
 	puts "showHigh, A faire:"
 	puts "-creation d'un dialogue box ou d'une nouvelle fenetre?"
 	puts "\t Dans highscore.rb"
-	puts "\t cherhcer existence du fichier de sauvegarde"
+	puts "\t cherchcer existence du fichier de sauvegarde"
 	puts "\t si present :"
 	puts "\t en faire un affichage en liste trié par niveau, par score ou temps"
 	puts "\t et faire fonction permettant d'y inscrire un nouveau score"
@@ -43,11 +45,11 @@ end
 
 def onDestroy()
 	puts "onDestroy, a faire:"
-	puts "fermeture de toutes les fenetres filles lancées"
+	#puts "fermeture de toutes les fenetres filles lancées"
 	Gtk.main_quit
 end
 
-class Builder < Gtk::Builder
+class Menu < Gtk::Builder
 
 	
   def initialize 
@@ -56,7 +58,10 @@ class Builder < Gtk::Builder
     
     self['window1'].set_window_position Gtk::Window::POS_CENTER
     self['window1'].signal_connect('destroy') { Gtk.main_quit }
+    self['window1'].set_title "Tak&Bin"
+    self['window1'].set_default_size(500,300)
     self['window1'].show_all
+    
     
     # Creation d'une variable d'instance par composant glade
     puts "Objets instanciés:"
@@ -76,5 +81,5 @@ class Builder < Gtk::Builder
 end
 
 Gtk.init
-builder = Builder.new()
+menu = Menu.new()
 Gtk.main
