@@ -53,17 +53,18 @@ class Partie < Gtk::Builder
 	
 	def sauvegarde
 		puts "sauvegarde, A faire:"
-		puts "stock la grille et le tableau d'hypotheze dans"
-		puts "\tun fichier apres une conversion Mashall"
+		puts "Coté reception du serveur, il faudrait au mieux remplir une base de données"
+		dialoog = DialoogBox.new(@sauvegarde,false)
+		
 	end
 
 	def onDestroy
 		puts "OnDestroy, A faire:"	
 		puts "Verification que l'utilisateur a une sauvegarde equivalente a la grille actuelle"
-		puts "\tet si non : dialogBox pour demander s'il veut sauvegarder"
-		dialoog = DialoogBox.new(@sauvegarde)
-		#self['window1'].hide
-		#Gtk.main_quit
+		
+		#if(@sauvegarde.aJour? == false)
+		dialoog = DialoogBox.new(@sauvegarde,true)
+		
 	end
 
 	

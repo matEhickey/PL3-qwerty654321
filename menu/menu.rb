@@ -15,14 +15,9 @@ def nouvPartie()
 	puts "appel a partie.rb avec la grille initialisee comme argument"
 	
 	
-		partie = Partie.new()	#mauvaise methode, car :
+		partie = Partie.new()	
 	
-					
-					#quand on recommence il ferme aussi le menu 
-					#surement a cause de l'appel a gtk.main_quit
-	
-	
-	
+			
 end
 
 def reprendrePartie()

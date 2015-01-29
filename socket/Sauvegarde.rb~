@@ -19,6 +19,9 @@ class Sauvegarde
 	
 	def Sauvegarde.creer(joueur,grille,score,temps,fini)
 		new(joueur,grille,score,temps,fini);
+		
+		
+		
 	end
 	
 	def toMarsh
@@ -39,24 +42,14 @@ class Sauvegarde
 		
 	end
 	
-	def Sauvegarde.test
-		a = Sauvegarde.creer("Mathias",1,100,30,false);
-		puts ("#{a} \n\n")
-		b=  a.toMarsh	
-		#puts b
-		#c = Sauvegarde.fromMarsh(b)
-		#print "\n"
-		#puts c
-		a.envoi
-		
-	end
+	
 	
 	def envoi	#envoi le fichier converti au serveur
 		begin
 			serveur = TCPSocket.new 'localhost', 2002
 		rescue
 			puts "Impossible de connecter au socket"
-			exit
+			return -1
 		end
 		begin
 			 message = self.toMarsh
@@ -72,6 +65,18 @@ class Sauvegarde
 				puts "probleme fermeture socket"
 			end
 		end
+		
+	end
+	
+	def Sauvegarde.test
+		a = Sauvegarde.creer("Mathias",1,100,30,false);
+		#puts ("#{a} \n\n")
+		#b=  a.toMarsh	
+		#puts b
+		#c = Sauvegarde.fromMarsh(b)
+		#print "\n"
+		#puts c
+		a.envoi
 		
 	end
 	
