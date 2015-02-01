@@ -13,9 +13,7 @@ def nouvPartie()
 	#parcourir fich jusqu'a trouver niveau = choix, puis jusqu'a taille = choix, compter nombre de grille correspondant au choix, puis rand
 	
 	puts "appel a partie.rb avec la grille initialisee comme argument"
-	
-	
-		partie = Partie.new()	
+	partie = Partie.new()	
 	
 			
 end
