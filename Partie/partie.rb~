@@ -15,8 +15,9 @@ class Partie < Gtk::Builder
 	@sauvegarde
 	@taille
 	@grille
-  def initialize 
+  def initialize(taille,grille)	#fichier de la grille
     super()
+    @taille = taille
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
     self['window1'].set_window_position Gtk::Window::POS_CENTER
@@ -36,7 +37,7 @@ class Partie < Gtk::Builder
         i+=1
         method(handler)
       }
-      @taille = 6
+     
 	@table1.n_rows=@table1.n_columns = @taille
 	#puts "Nombre de lignes : #{@table1.n_rows}"
 	#puts "Nombre de collones : #{@table1.n_columns}"
@@ -45,19 +46,12 @@ class Partie < Gtk::Builder
 	0.upto(@taille-1){ |i|
 		ligne = Array.new
 		0.upto(@taille-1){|j|
-			cellule = Cellule.creer(1,0).show
+			#if fichier.readBytes == '_'
+				cellule = Cellule.creer(false,0).show
+			#else
+				#cellule = Cellule.creer(true,0).show
+			#end
 			cellule.signal_connect('clicked'){cellule.onClic}
-			#cellule.label = "     "
-			#cellule.signal_connect('clicked'){
-				#puts "appui sur bouton [#{i}:#{j}]"
-			#	if(cellule.label == "     ")
-			#		cellule.label = " 1 "
-			#	elsif(cellule.label == " 1 ")
-			#		cellule.label = " 0 "
-			#	else
-			#		cellule.label = "     "
-			#	end
-			#}
 			@table1.attach_defaults(cellule,i,i+1,j,j+1)
 			ligne.push cellule
 		}

@@ -6,7 +6,7 @@ class Cellule < Gtk::Button
 	@bloque		#booleen
 	@soluce
 	@images		#tableau d'image
-	
+	@theme
 		
 	
 	def initialize(bloque,soluce)
@@ -16,7 +16,11 @@ class Cellule < Gtk::Button
 		@images.push Gtk::Image.new("../Images/button-red.png")
 		@images.push Gtk::Image.new("../Images/button-blue.png")
 		@images.push Gtk::Image.new("../Images/button-yellow.png")
-		set_image @images.at(2)	#image de la case vide
+		if(@bloque)
+			@etat = @soluce
+			relief = Gtk::RELIEF_NONE	#ne marche apparent pas(mais pe que sur mon pc), trouver qq chose dans le mm genre
+		end
+		set_image @images.at(@etat)	#image de la case vide
 		return @self
 	end
 	
@@ -39,16 +43,18 @@ class Cellule < Gtk::Button
 	end
 	
 	def onClic
-		case(@etat)
-			when 2
-				@etat = 1
-				set_image @images.at(1)
-			when 1
-				@etat = 0
-				set_image @images.at(0)
-			when 0
-				@etat = 2
-				set_image @images.at(2)
+		if(@bloque == false)
+			case(@etat)
+				when 2
+					@etat = 1
+					set_image @images.at(1)
+				when 1
+					@etat = 0
+					set_image @images.at(0)
+				when 0
+					@etat = 2
+					set_image @images.at(2)
+			end
 		end
 		
 	end	

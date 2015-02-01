@@ -6,46 +6,11 @@
 require 'gtk2'
 require './../Partie/partie.rb'
 
-def nouvPartie() 
-	puts "nouvPartie, A faire :"
-	puts "creation d'une dialogBox pour demander au joueur le niveau, et la taille de la grille"
-	puts "creation grille, et initialisation avec fichier:"
-	#parcourir fich jusqu'a trouver niveau = choix, puis jusqu'a taille = choix, compter nombre de grille correspondant au choix, puis rand
-	
-	puts "appel a partie.rb avec la grille initialisee comme argument"
-	
-	
-		partie = Partie.new()	
-	
-			
-end
 
-def reprendrePartie()
-	puts "reprendrePartie, A faire:"
-	puts "charger grille du fichier sauvegardé, et le score/temps"
-	puts "pour cela, appel personalisé au fichier partie.rb"
-	
-end
-
-def showHigh()
-	puts "showHigh, A faire:"
-	puts "-creation d'un dialogue box ou d'une nouvelle fenetre?"
-	puts "\t Dans highscore.rb"
-	puts "\t cherchcer existence du fichier de sauvegarde"
-	puts "\t si present :"
-	puts "\t en faire un affichage en liste trié par niveau, par score ou temps"
-	puts "\t et faire fonction permettant d'y inscrire un nouveau score"
-	
-end
-
-def onDestroy()
-	puts "onDestroy, a faire:"
-	#puts "fermeture de toutes les fenetres filles lancées"
-	Gtk.main_quit
-end
 
 class Menu < Gtk::Builder
 
+	@grilles	#tableau avec pour chaque case 
 	
   def initialize 
     super()
@@ -69,7 +34,57 @@ class Menu < Gtk::Builder
         puts "\t#{handler}"
         method(handler)
       }
+      
+     # demande au serveur le fichier des parties
+     
+      
+      
   end
+  
+  
+  
+  #-------------------------------------------------------
+
+
+
+	def nouvPartie() 
+		puts "nouvPartie, A faire :"
+		puts "creation d'une dialogBox pour demander au joueur le niveau, et la taille de la grille"
+		puts "creation grille, et initialisation avec fichier:"
+		#parcourir fich jusqu'a trouver niveau = choix, puis jusqu'a taille = choix, compter nombre de grille correspondant au choix, puis rand
+	
+		puts "appel a partie.rb avec la grille initialisee comme argument"
+	
+	
+		#TODO cree le menu de selection de la grille, qui lui , appel la nouvelle partie
+		partie = Partie.new(10,nil)	#grille 10x10, fichier de la grille
+	
+			
+	end
+
+	def reprendrePartie()
+		puts "reprendrePartie, A faire:"
+		puts "charger grille du fichier sauvegardé, et le score/temps"
+		puts "pour cela, appel personalisé au fichier partie.rb"
+	
+	end
+
+	def showHigh()
+		puts "showHigh, A faire:"
+		puts "-creation d'un dialogue box ou d'une nouvelle fenetre?"
+		puts "\t Dans highscore.rb"
+		puts "\t cherchcer existence du fichier de sauvegarde"
+		puts "\t si present :"
+		puts "\t en faire un affichage en liste trié par niveau, par score ou temps"
+		puts "\t et faire fonction permettant d'y inscrire un nouveau score"
+	
+	end
+
+	def onDestroy()
+		puts "onDestroy, a faire:"
+		#puts "fermeture de toutes les fenetres filles lancées"
+		Gtk.main_quit
+	end
 
 
 
