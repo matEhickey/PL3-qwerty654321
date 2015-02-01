@@ -1,5 +1,16 @@
 # PL3-qwerty654321
 
+
+#Tak&Bin
+
+	Pour lancer le jeu principal, il faut se placer dans le repertoire menu, et lancer menu.rb
+
+
+
+
+
+
+##GIT:
 ##Installation
 
 * [Pour Windows] , c'est tout nouveau, apparemment c'est intuitif et ça fonctionne bien, je vous laisse découvrir !
@@ -17,29 +28,6 @@ sudo yum install git
 
 [Pour Windows]: http://windows.github.com
 [Pour Mac]: http://mac.github.com
-NB: pour Windows et Mac, le tuto s'arrête ici. Pour Linux également, ils existe des logiciels (tig, gitk,...) pour gérer git sans passser (ou presque) par les commandes expliquées dans la suite du tuto.  
-
-
-##Configuration (Linux)
-
-Quelques étapes de configuration vous seront nécessaire pour pouvoir utiliser Git tranquillement.
-
-###Les couleurs
-
-```Bash
-git config --global color.diff auto
-git config --global color.status auto
-git config --global color.branch auto
-```
-
-###Les informations diverses
-
-```Bash
-git config --global user.name "Votre nom/pseudo"
-git config --global user.email "Votre e-mail utilisé pour vous inscrire sur github"
-git config --global credential.helper cache
-git config --global credential.helper 'cache --timeout=3600' #garde le mot de passe en cache 3600s après authentification réussie, c'est plus pratique
-```
 
 ###Ajouter le repo et rediriger les push sur le repo commun
 
@@ -56,7 +44,7 @@ En seulement 4 étapes !
 
 ```Bash
 cd "Le chemin vers le dossier cloné"
-git pull
+git pull https://github.com/Ant-32014/PL3-qwerty654321.git
 ```
 **Rep tant que "Travail non finit"**
 
@@ -70,7 +58,7 @@ git commit -a
 
 4.Pusher votre travail (Mettre à jour le repo)
 ```Bash
-git push
+git push https://github.com/Ant-32014/PL3-qwerty654321.git
 ```
 
 #Voila !
