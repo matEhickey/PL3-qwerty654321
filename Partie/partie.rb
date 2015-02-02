@@ -51,7 +51,7 @@ class Partie < Gtk::Builder
 			#else
 				#cellule = Cellule.creer(true,0).show
 			#end
-			cellule.signal_connect('clicked'){cellule.onClic}
+			cellule.signal_connect('clicked'){cellule.onClic(cellule)}
 			@table1.attach_defaults(cellule,i,i+1,j,j+1)
 			ligne.push cellule
 		}
@@ -77,7 +77,7 @@ class Partie < Gtk::Builder
 		puts "popHypo, A faire:"
 		puts "Depiler le tableau d'hypotheze et met a jour la grille"
 		
-		
+		puts @grille[1][1].methods
 		
 		
 		
