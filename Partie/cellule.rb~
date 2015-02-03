@@ -7,9 +7,12 @@ class Cellule < Gtk::Button
 	@soluce
 	@images		#tableau d'image
 	@theme
-	@@ancien= Cellule.new()
+	@init
+	@@ancien= Cellule.new()#preselection
 		
-	
+	attr_reader :bloque
+	attr_accessor :etat
+	attr_reader :images
 	def initialize(bloque,soluce)
 		super()
 		@etat,@bloque,@soluce = 2,bloque,soluce
@@ -22,8 +25,9 @@ class Cellule < Gtk::Button
 			relief = Gtk::RELIEF_NONE	#ne marche apparent pas(mais pe que sur mon pc), trouver qq chose dans le mm genre
 			modify_bg(Gtk::STATE_NORMAL, Gdk::Color.new(65535,20000, 20000))
 		end
-		cellule.modify_bg(Gtk::STATE_NORMAL, Gdk::Color.new(20000, 20000, 65535))
+		modify_bg(Gtk::STATE_NORMAL, Gdk::Color.new(45000, 45000, 55000))
 		set_image @images.at(@etat)	#image de la case vide
+		
 		return @self
 	end
 	
@@ -44,6 +48,11 @@ class Cellule < Gtk::Button
 	
 	def estCorrect
 		return(@etat == @soluce)
+	end
+	
+	def raz
+		etat = 2;
+		set_image @images.at(@etat)
 	end
 	
 	def onClic(button)
@@ -71,7 +80,6 @@ class Cellule < Gtk::Button
 			@@ancien = button
 			
 		end
-		
 	end	
 	
 end

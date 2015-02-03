@@ -15,6 +15,8 @@ class Partie < Gtk::Builder
 	@sauvegarde
 	@taille
 	@grille
+	@fichier	#pas vraiment un fichier, une chaine de charactere en fait
+	@grilleInit	#grille de depart
   def initialize(taille,grille)	#grille en chaine de caract
     super()
     @taille = taille
@@ -43,11 +45,12 @@ class Partie < Gtk::Builder
 	#puts "Nombre de collones : #{@table1.n_columns}"
 	
 	@grille = Array.new
+	
 	0.upto(@taille-1){ |i|
 		ligne = Array.new
 		0.upto(@taille-1){|j|
 			#if fichier.readBytes == '_'
-				cellule = Cellule.creer(false,0).show
+				cellule = Cellule.creer(false,0)
 			#else
 				#cellule = Cellule.creer(true,0).show
 			#end
@@ -57,8 +60,9 @@ class Partie < Gtk::Builder
 		}
 		@grille.push ligne
 		
+		
 	}
-           
+	@table1.show_all
            
   end
   
@@ -77,10 +81,38 @@ class Partie < Gtk::Builder
 		puts "popHypo, A faire:"
 		puts "Depiler le tableau d'hypotheze et met a jour la grille"
 		
-		puts @grille[1][1].methods
+	end
+	
+	def razGrille
 		
+		puts "appui sur raz"
+		i = 0
+		j = 0
 		
-		
+		@grille.each{ |ligne|
+				ligne.each{ |cellule|
+					
+					#cellule.destroy
+					#if fichier.readBytes == '_'
+					
+						#@table1.remove(cellule)
+						
+						cellule.raz
+						#@table1.attach_defaults(cellule,i,i+1,j,j+1)
+						
+					
+					#	cellule = Cellule.creer(false,0).show
+					#else
+						#cellule = Cellule.creer(true,0).show
+					#end
+					#cellule.signal_connect('clicked'){cellule.onClic(cellule)}
+					#@table1.attach_defaults(cellule,i,i+1,j,j+1)
+					
+					i+=1
+				}
+				j+=1
+				
+		}
 		
 	end
 	
@@ -88,7 +120,6 @@ class Partie < Gtk::Builder
 		puts "sauvegarde, A faire:"
 		puts "Coté reception du serveur, il faudrait au mieux remplir une base de données"
 		dialoog = DialoogBox.new(@sauvegarde,false)
-		
 	end
 
 	def onDestroy
