@@ -24,7 +24,7 @@ class Partie < Gtk::Builder
     
     self['window1'].set_window_position Gtk::Window::POS_CENTER
     self['window1'].signal_connect('destroy') { onDestroy }
-    self['window1'].show_all
+    #self['window1'].show_all
     @sauvegarde = Sauvegarde.new("Mathias",1,30,30,true)
     # Creation d'une variable d'instance par composant glade
     i=1
@@ -62,8 +62,14 @@ class Partie < Gtk::Builder
 		
 		
 	}
-	@table1.show_all
-           
+	
+	
+	
+	
+	
+	
+	
+	@window1.show_all
   end
   
   
@@ -113,6 +119,7 @@ class Partie < Gtk::Builder
 				j+=1
 				
 		}
+		#temps.raz
 		
 	end
 	
