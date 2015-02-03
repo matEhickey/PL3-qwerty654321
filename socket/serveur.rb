@@ -16,8 +16,8 @@ def sortie( server )
 end
 
 
-server = TCPServer.new 2002 # Server bound to port 2002
-
+server = TCPServer.new 10000 # Server bound to port 10000
+parties = Array.new
 Signal.trap("INT") do
 	sortie server
 end
@@ -46,7 +46,11 @@ end
 				begin
 					partie = Sauvegarde.fromMarsh(line)
 					puts "Recu de\t#{client} :\n  #{partie}\n"
-					
+					parties.push(partie)
+					puts "\n----------------\nTable des scores:\n"
+					parties.each{ |part|
+						puts part
+					}
 					
 					
 				rescue
