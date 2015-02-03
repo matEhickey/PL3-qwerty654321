@@ -5,7 +5,7 @@
 
 require 'gtk2'
 require '../Partie/partie.rb'
-
+require '../image_user/selecteurDimage.rb'
 
 class UserInterface < Gtk::Builder
 	
@@ -58,6 +58,24 @@ def reprendrePartie()
 		puts "charger grille du fichier sauvegardé, et le score/temps"
 		puts "pour cela, appel personalisé au fichier partie.rb"
 	
+end
+
+def load_image
+		puts "appel a load_image"
+		pipeReader,pipeWritter = IO.pipe
+		@selecteurDimage = SelecteurDimage.new(pipeWritter);
+		t1 = Thread.new(){
+				begin
+				filename = pipeReader.gets.delete!("\n")
+				#@imageUser.file=(filename)			activer cette ligne quand on saura comment redimensionner une image
+				
+					puts "Working, plus qu'a savoir comment redimensionner image"
+				rescue
+					puts "------Not working------"
+				end
+		}
+		
+		
 	end
 
 end
