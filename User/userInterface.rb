@@ -8,17 +8,21 @@ require '../Partie/partie.rb'
 
 
 class UserInterface < Gtk::Builder
-
 	
-  def initialize 
+	@fenetreMenu
+	
+	
+  def initialize (fenetreMenu)
     super()
+    @fenetreMenu = fenetreMenu
+    @fenetreMenu.hide
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
     self['window1'].set_window_position Gtk::Window::POS_CENTER
     self['window1'].signal_connect('destroy') { 
-    		@window1.destroy
-    		
-    			 }
+    		@window1.hide
+    		@fenetreMenu.show
+    }
     self['window1'].show_all
     
     # Creation d'une variable d'instance par composant glade
@@ -45,7 +49,8 @@ def jouerPartie(bouton)
 		when @partie12
 			taille = 12
 	end
-	Partie.new(taille,"____________")
+	Partie.new(taille,"____________",@window1)
+	
 end
 
 end

@@ -17,9 +17,15 @@ class Partie < Gtk::Builder
 	@grille
 	@fichier	#pas vraiment un fichier, une chaine de charactere en fait
 	@grilleInit	#grille de depart
-  def initialize(taille,grille)	#grille en chaine de caract
+	@fenetreUser
+	
+	
+  def initialize(taille,grille,fenetreUser)	#grille en chaine de caract
     super()
     @taille = taille
+    @fenetreUser = fenetreUser
+    
+    @fenetreUser.hide
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
     self['window1'].set_window_position Gtk::Window::POS_CENTER
@@ -62,10 +68,6 @@ class Partie < Gtk::Builder
 		
 		
 	}
-	
-	
-	
-	
 	
 	
 	
@@ -134,7 +136,8 @@ class Partie < Gtk::Builder
 		puts "Verification que l'utilisateur a une sauvegarde equivalente a la grille actuelle"
 		
 		#if(@sauvegarde.aJour? == false)
-		dialoog = DialoogBox.new(@sauvegarde,true)
+		dialoog = DialoogBox.new(@sauvegarde,true,@fenetreUser,@window1)
+		
 		
 	end
 

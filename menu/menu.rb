@@ -54,10 +54,9 @@ class Menu < Gtk::Builder
 		#parcourir fich jusqu'a trouver niveau = choix, puis jusqu'a taille = choix, compter nombre de grille correspondant au choix, puis rand
 	
 		puts "appel a partie.rb avec la grille initialisee comme argument"
-		@window1.hide
 	
 		#TODO cree le menu de selection de la grille, qui lui , appel la nouvelle partie
-		partie = UserInterface.new
+		partie = UserInterface.new(@window1)
 	
 			
 	end

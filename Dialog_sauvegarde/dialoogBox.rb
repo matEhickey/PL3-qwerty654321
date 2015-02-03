@@ -12,8 +12,12 @@ class DialoogBox < Gtk::Builder
 
 	@sauvegarde 
 	@finDuJeu
-  def initialize(sauvegarde,finDuJeu)
+	@fenetreUser
+	@fenetrePartie
+  def initialize(sauvegarde,finDuJeu,fenetreUser,fenetrePartie)
     super()
+    @fenetreUser = fenetreUser
+    @fenetrePartie = fenetrePartie
     @finDuJeu = finDuJeu
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
@@ -32,14 +36,14 @@ class DialoogBox < Gtk::Builder
 		a = Sauvegarde.creer("Mathias",1,100,30,false);
 		begin
 			a.envoi
-			if(@finDuJeu)
-				Gtk.main_quit
-			else
-				@dialog1.destroy
-			end
 			
 		rescue
 			puts "Erreur d'envoi"
+		end
+		@dialog1.destroy
+		if(@finDuJeu)
+			@fenetrePartie.hide
+			@fenetreUser.show
 		end
 	}
      self.connect_signals{ |handler| 
