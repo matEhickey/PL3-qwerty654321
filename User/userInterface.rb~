@@ -21,7 +21,7 @@ class UserInterface < Gtk::Builder
     self['window1'].set_window_position Gtk::Window::POS_CENTER
     self['window1'].signal_connect('destroy') { 
     		@window1.hide
-    		@fentreMenu.show
+    		@fenetreMenu.show
     }
     self['window1'].show_all
     
@@ -52,6 +52,13 @@ def jouerPartie(bouton)
 	Partie.new(taille,"____________",@window1)
 	
 end
+
+def reprendrePartie()
+		puts "reprendrePartie, A faire:"
+		puts "charger grille du fichier sauvegardé, et le score/temps"
+		puts "pour cela, appel personalisé au fichier partie.rb"
+	
+	end
 
 end
 

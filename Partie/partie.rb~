@@ -18,13 +18,13 @@ class Partie < Gtk::Builder
 	@fichier	#pas vraiment un fichier, une chaine de charactere en fait
 	@grilleInit	#grille de depart
 	@fenetreUser
-	@fenetreMenu
 	
-  def initialize(taille,grille,fenetreUser,fenetreMenu)	#grille en chaine de caract
+	
+  def initialize(taille,grille,fenetreUser)	#grille en chaine de caract
     super()
     @taille = taille
     @fenetreUser = fenetreUser
-    @fenetreMenu = fenetreMenu
+    
     @fenetreUser.hide
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
@@ -134,7 +134,6 @@ class Partie < Gtk::Builder
 	def onDestroy
 		puts "OnDestroy, A faire:"	
 		puts "Verification que l'utilisateur a une sauvegarde equivalente a la grille actuelle"
-		
 		#if(@sauvegarde.aJour? == false)
 		dialoog = DialoogBox.new(@sauvegarde,true,@fenetreUser,@window1)
 		

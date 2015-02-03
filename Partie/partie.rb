@@ -29,7 +29,10 @@ class Partie < Gtk::Builder
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
     self['window1'].set_window_position Gtk::Window::POS_CENTER
-    self['window1'].signal_connect('destroy') { onDestroy }
+    self['window1'].signal_connect('destroy') { 
+    	@window1.hide
+    	@fenetreUser.show
+     }
     #self['window1'].show_all
     @sauvegarde = Sauvegarde.new("Mathias",1,30,30,true)
     # Creation d'une variable d'instance par composant glade
@@ -134,7 +137,6 @@ class Partie < Gtk::Builder
 	def onDestroy
 		puts "OnDestroy, A faire:"	
 		puts "Verification que l'utilisateur a une sauvegarde equivalente a la grille actuelle"
-		
 		#if(@sauvegarde.aJour? == false)
 		dialoog = DialoogBox.new(@sauvegarde,true,@fenetreUser,@window1)
 		

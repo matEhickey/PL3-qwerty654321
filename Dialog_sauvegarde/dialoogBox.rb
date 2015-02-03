@@ -42,8 +42,11 @@ class DialoogBox < Gtk::Builder
 		end
 		@dialog1.destroy
 		if(@finDuJeu)
-			@fenetrePartie.hide
-			@fenetreUser.show
+			begin
+				@fenetrePartie.hide
+			ensure
+				@fenetreUser.show
+			end
 		end
 	}
      self.connect_signals{ |handler| 

@@ -53,6 +53,13 @@ def jouerPartie(bouton)
 	
 end
 
+def reprendrePartie()
+		puts "reprendrePartie, A faire:"
+		puts "charger grille du fichier sauvegardé, et le score/temps"
+		puts "pour cela, appel personalisé au fichier partie.rb"
+	
+	end
+
 end
 
 

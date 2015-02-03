@@ -36,19 +36,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="b_reprendre">
-            <property name="label" translatable="yes">Reprendre</property>
-            <property name="visible">True</property>
-            <property name="can_focus">True</property>
-            <property name="receives_default">True</property>
-            <property name="use_action_appearance">False</property>
-            <signal name="clicked" handler="reprendrePartie" swapped="no"/>
-          </object>
-          <packing>
-            <property name="expand">True</property>
-            <property name="fill">True</property>
-            <property name="position">2</property>
-          </packing>
+          <placeholder/>
         </child>
         <child>
           <object class="GtkButton" id="b_high">

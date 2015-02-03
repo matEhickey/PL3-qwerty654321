@@ -169,12 +169,13 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <child>
-                              <object class="GtkButton" id="button10">
-                                <property name="label" translatable="yes">button</property>
+                              <object class="GtkButton" id="reprendre_button">
+                                <property name="label" translatable="yes">Reprendre</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">True</property>
                                 <property name="use_action_appearance">False</property>
+                                <signal name="clicked" handler="reprendrePartie" swapped="no"/>
                               </object>
                               <packing>
                                 <property name="expand">True</property>
