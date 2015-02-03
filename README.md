@@ -1,13 +1,19 @@
 # PL3-qwerty654321
 
 
-#Tak&Bin
-
-	Pour lancer le jeu principal, il faut se placer dans le repertoire menu, et lancer menu.rb
+##Tak&Bin
 
 
 
-
+#Pour lancer le jeu, il faut:
+	Sous UNIX:
+		-ou se placer dans le fichier et taper "./takuzu"
+		-ou placer ce fichier dans le dossier /usr/games,
+			et le dossier principal dans "~"
+			ainsi il sera accessible de partout avec "takuzu"
+	
+	Sous Windows:
+		se placer dans le dossier menu  et lancer menu.rb
 
 
 ##GIT:
