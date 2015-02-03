@@ -4,7 +4,7 @@
 # auteur :Groupe 2
 
 require 'gtk2'
-require './../Partie/partie.rb'
+require './../User/userInterface.rb'
 
 
 
@@ -57,7 +57,7 @@ class Menu < Gtk::Builder
 		@window1.hide
 	
 		#TODO cree le menu de selection de la grille, qui lui , appel la nouvelle partie
-		partie = Partie.new(10,nil)	#grille 10x10, fichier de la grille
+		partie = UserInterface.new
 	
 			
 	end

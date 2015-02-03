@@ -4,7 +4,7 @@
 # Auteur MATHIAS DIDIER
 
 require 'gtk2'
-
+require '../Partie/partie.rb'
 
 
 class UserInterface < Gtk::Builder
@@ -33,6 +33,20 @@ class UserInterface < Gtk::Builder
   end
 
 
+def jouerPartie(bouton)
+	case(bouton)
+		
+		when @partie6
+			taille = 6
+		when @partie8
+			taille = 8
+		when @partie10	
+			taille = 10
+		when @partie12
+			taille = 12
+	end
+	Partie.new(taille,"____________")
+end
 
 end
 

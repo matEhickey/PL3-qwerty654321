@@ -4,7 +4,7 @@
 # Auteur MATHIAS DIDIER
 
 require 'gtk2'
-
+require '../Partie/partie.rb'
 
 
 class UserInterface < Gtk::Builder
@@ -17,7 +17,7 @@ class UserInterface < Gtk::Builder
     self['window1'].set_window_position Gtk::Window::POS_CENTER
     self['window1'].signal_connect('destroy') { 
     		@window1.destroy
-    		Gtk.main_quit
+    		
     			 }
     self['window1'].show_all
     
@@ -33,9 +33,21 @@ class UserInterface < Gtk::Builder
   end
 
 
+def jouerPartie(bouton)
+	case(bouton)
+		
+		when @partie6
+			taille = 6
+		when @partie8
+			taille = 8
+		when @partie10	
+			taille = 10
+		when @partie12
+			taille = 12
+	end
+	Partie.new(taille,"____________")
+end
 
 end
 
-Gtk.init
-builder = UserInterface.new()
-Gtk.main
+
