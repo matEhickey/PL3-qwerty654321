@@ -32,7 +32,7 @@ end
 		client = server.accept    # Wait for a client to connect
 	
 	
-		procClient = fork{
+		proc=Thread.new{
 			p "nouveau client : #{client}"
 			line = ""
 			recu = 0
@@ -41,24 +41,33 @@ end
 				
 				line = client.recv(100)	#valeur arbitraire, au moins ca marche
 				recu += 1
-				
 				#print line
 				begin
 					partie = Sauvegarde.fromMarsh(line)
-					puts "Recu de\t#{client} :\n  #{partie}\n"
+					#puts "Recu de\t#{client} :\n  #{partie}\n"
 					parties.push(partie)
-					puts "\n----------------\nTable des scores:\n"
-					parties.each{ |part|
-						puts part
+					
+					parties.sort! { |x,y| 
+						x.score <=> y.score		
 					}
 					
+
+					if(partie.fini == true)
+						puts "\n---------------------------\nTable des scores:\n\n"
+						parties.each{ |part|
+							if(part.fini == true)
+								puts part
+							end
+						}
+						puts "\n---------------------------\n"
+					end
 					
 				rescue
 					puts "Probleme avec Sauvegarde.fromMarsh"
 				end
-				print " #{client} vient de se deconnecter\n"
+				#print " #{client} vient de se deconnecter\n"
 				client.close 
-				exit
+				#exit
 		
 		
 			

@@ -11,7 +11,7 @@ class Sauvegarde
 	@fini	#Booleen
 	@grille
 	
-	attr_reader :joueur, :fini
+	attr_reader :joueur, :fini, :score
 	
 	def initialize(joueur,grille,score,temps,fini)
 		@joueur,@score,@temps,@fini,@grille= joueur,score,temps,fini,grille
@@ -81,7 +81,7 @@ class Sauvegarde
 	end
 	
 	def to_s
-		return "Sauvegarde de #{@joueur}: \nGrille : #{@grille} score=#{@temps} temps=#{@temps}   fini ?#{@fini}"
+		return "#{@joueur}: Grille : #{@grille} score=#{@temps} temps=#{@temps}   fini ?#{@fini}"
 	end
 end
 
