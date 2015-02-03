@@ -48,7 +48,7 @@ end
 					parties.push(partie)
 					
 					parties.sort! { |x,y| 
-						x.score <=> y.score		
+						y.score <=> x.score		
 					}
 					
 

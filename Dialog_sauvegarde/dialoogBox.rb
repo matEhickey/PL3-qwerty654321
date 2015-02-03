@@ -33,7 +33,7 @@ class DialoogBox < Gtk::Builder
      @label_info_partie.set_label(sauvegarde.to_s)
      
 	self['button_oui'].signal_connect('clicked') {
-		a = Sauvegarde.creer("Mathias",1,100,30,false);
+		a = Sauvegarde.creer("Mathias",1,100,30,true);
 		begin
 			a.envoi
 			

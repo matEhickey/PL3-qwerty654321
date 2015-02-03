@@ -69,7 +69,7 @@ class Sauvegarde
 	end
 	
 	def Sauvegarde.test
-		a = Sauvegarde.creer("Mathias",1,100,30,false);
+		a = Sauvegarde.creer("Bruno",1,102,30,true);
 		#puts ("#{a} \n\n")
 		#b=  a.toMarsh	
 		#puts b
@@ -81,7 +81,7 @@ class Sauvegarde
 	end
 	
 	def to_s
-		return "#{@joueur}: Grille : #{@grille} score=#{@temps} temps=#{@temps}   fini ?#{@fini}"
+		return "#{@joueur}: Grille : #{@grille} score=#{@score} temps=#{@temps}   fini ?#{@fini}"
 	end
 end
 

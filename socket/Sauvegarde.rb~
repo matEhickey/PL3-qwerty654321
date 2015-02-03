@@ -11,7 +11,7 @@ class Sauvegarde
 	@fini	#Booleen
 	@grille
 	
-	attr_reader :joueur, :fini
+	attr_reader :joueur, :fini, :score
 	
 	def initialize(joueur,grille,score,temps,fini)
 		@joueur,@score,@temps,@fini,@grille= joueur,score,temps,fini,grille
@@ -46,7 +46,7 @@ class Sauvegarde
 	
 	def envoi	#envoi le fichier converti au serveur
 		begin
-			serveur = TCPSocket.new '192.168.1.25', 9050
+			serveur = TCPSocket.new '192.168.1.25',10000
 		rescue
 			puts "----Impossible de connecter au socket----"
 			return -1
@@ -69,7 +69,7 @@ class Sauvegarde
 	end
 	
 	def Sauvegarde.test
-		a = Sauvegarde.creer("Mathias",1,100,30,false);
+		a = Sauvegarde.creer("Bruno",1,102,30,true);
 		#puts ("#{a} \n\n")
 		#b=  a.toMarsh	
 		#puts b
@@ -81,7 +81,7 @@ class Sauvegarde
 	end
 	
 	def to_s
-		return "Sauvegarde de #{@joueur}: \nGrille : #{@grille} score=#{@temps} temps=#{@temps}   fini ?#{@fini}"
+		return "#{@joueur}: Grille : #{@grille} score=#{@temps} temps=#{@temps}   fini ?#{@fini}"
 	end
 end
 
