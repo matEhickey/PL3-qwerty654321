@@ -46,7 +46,7 @@ class Sauvegarde
 	
 	def envoi	#envoi le fichier converti au serveur
 		begin
-			serveur = TCPSocket.new 'localhost', 2002
+			serveur = TCPSocket.new '192.168.1.25',10000
 		rescue
 			puts "----Impossible de connecter au socket----"
 			return -1
