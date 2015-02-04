@@ -79,4 +79,4 @@ class Timer
 		
 	end
 end
-Timer.test
+#Timer.test

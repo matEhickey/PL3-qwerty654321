@@ -27,9 +27,9 @@ class Timer
 	def to_s
 		time = (Time.now-@depart)-(@pile)
 		if(@pause.to_i == (Time.now-Time.now).to_i)
-			puts "le timer n'est pas en pause"
+			#puts "le timer n'est pas en pause"
 		else 
-			puts "le timer est en pause"
+			#puts "le timer est en pause"
 			time = time - (Time.now-@pause)
 		end
 		h = sprintf('%02i', (time.to_i / 3600))
@@ -37,7 +37,7 @@ class Timer
 		s = sprintf('%02i', (time.to_i % 60))
 		mt = sprintf('%02i', ((time - time.to_i)*100).to_i)
 		return "#{m}:#{s}:#{mt}"
-		return chaine
+		
 	end
 	
 	def raz

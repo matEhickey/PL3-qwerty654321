@@ -7,14 +7,14 @@ class Sauvegarde
 	
 	@joueur
 	@score	#Compteur de points
-	@temps	#Temps en seconde
+	@temps	#Temps en chaine
 	@fini	#Booleen
 	@grille
 	
 	attr_reader :joueur, :fini, :score
 	
 	def initialize(joueur,grille,score,temps,fini)
-		@joueur,@score,@temps,@fini,@grille= joueur,score,temps,fini,grille
+		@joueur,@grille,@score,@temps,@fini= joueur,grille,score,temps,fini
 	end
 	
 	def Sauvegarde.creer(joueur,grille,score,temps,fini)

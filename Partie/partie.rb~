@@ -171,7 +171,8 @@ class Partie < Gtk::Builder
 		if(@pause == false)
 			pause
 		end
-		@sauvegarde = Sauvegarde.new("Mathias",1,@score,@timer.to_s,true)
+		@sauvegarde = Sauvegarde.new("Mat",1,@score,@timer.to_s,true)
+		puts @sauvegarde
 		dialoog = DialoogBox.new(@sauvegarde,true,@fenetreUser,@window1,@threadTime)
 		
 		

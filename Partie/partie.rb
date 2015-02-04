@@ -21,6 +21,7 @@ class Partie < Gtk::Builder
 	@fenetreUser
 	@timer
 	@pause	#boolean indiquant l'etat du jeu
+	@score 
 	
   def initialize(taille,grille,fenetreUser)	#grille en chaine de caract
     super()
@@ -28,6 +29,8 @@ class Partie < Gtk::Builder
     @fenetreUser = fenetreUser
     @fenetreUser.hide
     @pause = false
+    @score = @taille*@taille
+    
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
     self['window1'].set_window_position Gtk::Window::POS_CENTER
@@ -171,7 +174,7 @@ class Partie < Gtk::Builder
 		if(@pause == false)
 			pause
 		end
-		@sauvegarde = Sauvegarde.new("Mathias",1,@score,@timer.to_s,true)
+		@sauvegarde = Sauvegarde.new("Mat",1,@score,@timer.to_s,true)
 		puts @sauvegarde
 		dialoog = DialoogBox.new(@sauvegarde,true,@fenetreUser,@window1,@threadTime)
 		

@@ -20,13 +20,13 @@ class DialoogBox < Gtk::Builder
     @threadTime = threadTime
     @fenetrePartie = fenetrePartie
     @finDuJeu = finDuJeu
+    @sauvegarde = sauvegarde
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
     self['dialog1'].set_window_position Gtk::Window::POS_CENTER
     
     self['dialog1'].signal_connect('destroy') { 
     	self['dialog1'].hide
-    	@threadTime.kill
     }
     self['dialog1'].show_all
     
@@ -37,9 +37,9 @@ class DialoogBox < Gtk::Builder
      @label_info_partie.set_label(sauvegarde.to_s)
      
 	self['button_oui'].signal_connect('clicked') {
-		a = Sauvegarde.creer("Mathias",1,100,30,true);
+		
 		begin
-			a.envoi
+			@sauvegarde.envoi
 			
 		rescue
 			puts "Erreur d'envoi"
@@ -51,7 +51,11 @@ class DialoogBox < Gtk::Builder
 			ensure
 				@fenetreUser.show
 				@dialog1.destroy
+				
 			end
+		else 
+			@dialog1.destroy
+			
 		end
 	}
      self.connect_signals{ |handler| 
