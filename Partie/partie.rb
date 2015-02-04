@@ -34,10 +34,7 @@ class Partie < Gtk::Builder
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
     self['window1'].set_window_position Gtk::Window::POS_CENTER
-    self['window1'].signal_connect('destroy') { 
-    	@window1.hide
-    	@fenetreUser.show
-     }
+    self['window1'].signal_connect('destroy') { onDestroy    }
      
     #self['window1'].show_all
     
@@ -177,7 +174,12 @@ class Partie < Gtk::Builder
 		@sauvegarde = Sauvegarde.new("Mat",1,@score,@timer.to_s,true)
 		puts @sauvegarde
 		dialoog = DialoogBox.new(@sauvegarde,true,@fenetreUser,@window1,@threadTime)
-		
+		if(ARGV.length != 0)
+			Gtk.main_quit
+		else
+			@window1.hide
+    			@fenetreUser.show
+    		end
 		
 	end
 
@@ -189,6 +191,13 @@ class Partie < Gtk::Builder
 
 end
 
-#Gtk.init
-#partie = Partie.new()
-#Gtk.main
+
+if(ARGV.length != 0)
+	
+	Gtk.init
+	Partie.new(10,"____________",Gtk::Window.new)
+	
+	Gtk.main
+	
+	
+end
