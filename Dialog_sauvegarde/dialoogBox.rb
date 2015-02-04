@@ -14,16 +14,20 @@ class DialoogBox < Gtk::Builder
 	@finDuJeu
 	@fenetreUser
 	@fenetrePartie
-  def initialize(sauvegarde,finDuJeu,fenetreUser,fenetrePartie)
+  def initialize(sauvegarde,finDuJeu,fenetreUser,fenetrePartie,threadTime)
     super()
     @fenetreUser = fenetreUser
+    @threadTime = threadTime
     @fenetrePartie = fenetrePartie
     @finDuJeu = finDuJeu
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
     self['dialog1'].set_window_position Gtk::Window::POS_CENTER
     
-    self['dialog1'].signal_connect('destroy') { self['dialog1'].destroy }
+    self['dialog1'].signal_connect('destroy') { 
+    	self['dialog1'].hide
+    	@threadTime.kill
+    }
     self['dialog1'].show_all
     
     # Creation d'une variable d'instance par composant glade
@@ -40,12 +44,13 @@ class DialoogBox < Gtk::Builder
 		rescue
 			puts "Erreur d'envoi"
 		end
-		@dialog1.destroy
+		
 		if(@finDuJeu)
 			begin
 				@fenetrePartie.hide
 			ensure
 				@fenetreUser.show
+				@dialog1.destroy
 			end
 		end
 	}

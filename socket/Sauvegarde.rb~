@@ -81,7 +81,7 @@ class Sauvegarde
 	end
 	
 	def to_s
-		return "#{@joueur}: Grille : #{@grille} score=#{@temps} temps=#{@temps}   fini ?#{@fini}"
+		return "#{@joueur}: Grille : #{@grille} score=#{@score} temps=#{@temps}   fini ?#{@fini}"
 	end
 end
 

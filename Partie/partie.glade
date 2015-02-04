@@ -53,10 +53,9 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="label7">
+                  <object class="GtkLabel" id="temps">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">00:00</property>
                   </object>
                   <packing>
                     <property name="expand">True</property>
@@ -874,11 +873,11 @@ les règles</property>
                     </child>
                     <child>
                       <object class="GtkButton" id="pausePlay_button">
-                        <property name="label" translatable="yes">Pause</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="use_action_appearance">False</property>
+                        <signal name="clicked" handler="pause" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">True</property>

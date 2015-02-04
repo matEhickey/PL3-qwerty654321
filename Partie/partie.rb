@@ -7,6 +7,7 @@ require 'gtk2'
 require './../socket/Sauvegarde.rb'
 require './../Dialog_sauvegarde/dialoogBox.rb'
 require './../Partie/cellule.rb'
+require './../timer/Timer.rb'
 
 
 
@@ -18,14 +19,15 @@ class Partie < Gtk::Builder
 	@fichier	#pas vraiment un fichier, une chaine de charactere en fait
 	@grilleInit	#grille de depart
 	@fenetreUser
-	
+	@timer
+	@pause	#boolean indiquant l'etat du jeu
 	
   def initialize(taille,grille,fenetreUser)	#grille en chaine de caract
     super()
     @taille = taille
     @fenetreUser = fenetreUser
-    
     @fenetreUser.hide
+    @pause = false
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     
     self['window1'].set_window_position Gtk::Window::POS_CENTER
@@ -33,8 +35,9 @@ class Partie < Gtk::Builder
     	@window1.hide
     	@fenetreUser.show
      }
+     
     #self['window1'].show_all
-    @sauvegarde = Sauvegarde.new("Mathias",1,30,30,true)
+    
     # Creation d'une variable d'instance par composant glade
     i=1
     self.objects.each() { |p|
@@ -42,6 +45,7 @@ class Partie < Gtk::Builder
     	i+=1
         instance_variable_set("@#{p.builder_name}".intern, self[p.builder_name])
      }
+     @pausePlay_button.set_label "  Pause  "
      i=1
      self.connect_signals{ |handler| 
        # puts "Signal #{i} : #{handler}"
@@ -66,13 +70,26 @@ class Partie < Gtk::Builder
 			cellule.signal_connect('clicked'){cellule.onClic(cellule)}
 			@table1.attach_defaults(cellule,i,i+1,j,j+1)
 			ligne.push cellule
+			
 		}
 		@grille.push ligne
 		
 		
 	}
 	
-	
+	@timer = Timer.new @pausePlay_button
+	@threadTime = Thread.new{
+		while(true)
+			begin
+				@temps.set_label @timer.to_s
+			rescue
+				@temps.set_label "BUG"
+				p1.exit
+			end
+			sleep 0.03
+			
+		end
+	}
 	
 	@window1.show_all
   end
@@ -124,7 +141,20 @@ class Partie < Gtk::Builder
 				j+=1
 				
 		}
-		#temps.raz
+		@timer.raz
+		
+	end
+	
+	def pause
+		if(@pause == false)
+			@timer.pause
+			@pause = true
+			
+		else 
+			@timer.reprendre
+			@pause = false
+			
+		end
 		
 	end
 	
@@ -138,7 +168,12 @@ class Partie < Gtk::Builder
 		puts "OnDestroy, A faire:"	
 		puts "Verification que l'utilisateur a une sauvegarde equivalente a la grille actuelle"
 		#if(@sauvegarde.aJour? == false)
-		dialoog = DialoogBox.new(@sauvegarde,true,@fenetreUser,@window1)
+		if(@pause == false)
+			pause
+		end
+		@sauvegarde = Sauvegarde.new("Mathias",1,@score,@timer.to_s,true)
+		puts @sauvegarde
+		dialoog = DialoogBox.new(@sauvegarde,true,@fenetreUser,@window1,@threadTime)
 		
 		
 	end

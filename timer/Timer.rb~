@@ -1,0 +1,82 @@
+class Timer
+	@depart
+	@pause
+	
+	@label
+	@pile
+	
+	def initialize(label)
+		
+		
+		@depart = Time.now
+		@label = label
+		@pile = Time.now - Time.now
+		@pause = Time.now - Time.now
+	end
+	
+	def pause
+		@pause = Time.now
+	end
+	
+	def reprendre
+		
+		@pile = @pile + (Time.now - @pause)
+		@pause = Time.now - Time.now
+	end
+	
+	def to_s
+		time = (Time.now-@depart)-(@pile)
+		if(@pause.to_i == (Time.now-Time.now).to_i)
+			puts "le timer n'est pas en pause"
+		else 
+			puts "le timer est en pause"
+			time = time - (Time.now-@pause)
+		end
+		h = sprintf('%02i', (time.to_i / 3600))
+		m = sprintf('%02i', ((time.to_i % 3600) / 60))
+		s = sprintf('%02i', (time.to_i % 60))
+		mt = sprintf('%02i', ((time - time.to_i)*100).to_i)
+		return "#{m}:#{s}:#{mt}"
+		return chaine
+	end
+	
+	def raz
+	
+		@depart = Time.now
+		@pile = Time.now - Time.now
+		
+		if(@pause.to_i != (Time.now-Time.now).to_i)
+			@pause = Time.now
+		else
+			@pause = Time.now - Time.now
+		end
+	end
+	
+	def Timer.test
+		a = Timer.new(nil)
+		20.times do
+			puts a
+			sleep 0.1
+		end
+		a.raz
+		puts "---RAZ---"
+		20.times do
+			puts a
+			sleep 0.1
+		end
+		a.pause
+		20.times do
+			puts a
+			sleep 0.1
+		end
+		a.reprendre
+		20.times do
+			puts a
+			sleep 0.1
+		end
+		
+		
+		
+	end
+end
+Timer.test

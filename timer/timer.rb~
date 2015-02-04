@@ -1,15 +1,18 @@
 
 class Timer
-
-	
+	@pause
+	@el
+	@accumulated
+	@elapsed
 	def initialise
+		 @start = Time.now
 		@accumulated = 0
 		@elapsed = 0
 	end	
 	
     def start
-        @start = Time.now
-        @pause	= T#compte le temps de pause pause
+       
+        #compte le temps de pause pause
         
         
         #    @mybutton.configure('text' => 'Stop')
@@ -35,11 +38,7 @@ class Timer
     def to_s
         @elapsed = Time.now - (@start-@pause)
         time = @accumulated + @elapsed
-        h = sprintf('%02i', (time.to_i / 3600))
-        m = sprintf('%02i', ((time.to_i % 3600) / 60))
-        s = sprintf('%02i', (time.to_i % 60))
-        mt = sprintf('%02i', ((time - time.to_i)*100).to_i)
-        return "#{m}:#{s}"
+        return "@elapsed"
         #    @mylabel.configure('text' => newtime)
     end
     
