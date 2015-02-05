@@ -13,6 +13,7 @@ require './../timer/Timer.rb'
 
 
 class Partie < Gtk::Builder
+	@user
 	@sauvegarde
 	@taille
 	@grille
@@ -22,10 +23,15 @@ class Partie < Gtk::Builder
 	@timer
 	@pause	#boolean indiquant l'etat du jeu
 	@score 
+	@tabGrille
+	@tabSoluce
 	
-  def initialize(taille,grille,fenetreUser)	#grille en chaine de caract
+  def initialize(taille,tabGrille,tabSoluce,fenetreUser,user)	#grille en chaine de caract
     super()
+    @user= user
     @taille = taille
+    @tabGrille = tabGrille.split(//)
+    @tabSoluce = tabSoluce.split(//)
     @fenetreUser = fenetreUser
     @fenetreUser.hide
     @pause = false
@@ -62,11 +68,11 @@ class Partie < Gtk::Builder
 	0.upto(@taille-1){ |i|
 		ligne = Array.new
 		0.upto(@taille-1){|j|
-			#if fichier.readBytes == '_'
-				cellule = Cellule.creer(false,0)
-			#else
-				#cellule = Cellule.creer(true,0).show
-			#end
+			if(@tabGrille.at((i*@taille)+j) == '_')
+				cellule = Cellule.creer(false,2,@tabGrille.at((i*@taille)+j).to_i)
+			else
+				cellule = Cellule.creer(true,@tabGrille.at((i*@taille)+j).to_i,@tabSoluce.at((i*@taille)+j).to_i)
+			end
 			cellule.signal_connect('clicked'){cellule.onClic(cellule)}
 			@table1.attach_defaults(cellule,i,i+1,j,j+1)
 			ligne.push cellule
@@ -119,30 +125,12 @@ class Partie < Gtk::Builder
 		
 		@grille.each{ |ligne|
 				ligne.each{ |cellule|
-					
-					#cellule.destroy
-					#if fichier.readBytes == '_'
-					
-						#@table1.remove(cellule)
-						
 						cellule.raz
-						#@table1.attach_defaults(cellule,i,i+1,j,j+1)
-						
-					
-					#	cellule = Cellule.creer(false,0).show
-					#else
-						#cellule = Cellule.creer(true,0).show
-					#end
-					#cellule.signal_connect('clicked'){cellule.onClic(cellule)}
-					#@table1.attach_defaults(cellule,i,i+1,j,j+1)
-					
 					i+=1
 				}
 				j+=1
-				
 		}
 		@timer.raz
-		
 	end
 	
 	def pause
@@ -177,7 +165,7 @@ class Partie < Gtk::Builder
 		if(ARGV.length != 0)
 			Gtk.main_quit
 		else
-			@window1.hide
+			#@window1.hide
     			@fenetreUser.show
     		end
 		

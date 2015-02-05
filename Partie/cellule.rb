@@ -13,7 +13,7 @@ class Cellule < Gtk::Button
 	attr_reader :bloque
 	attr_accessor :etat
 	attr_reader :images
-	def initialize(bloque,soluce)
+	def initialize(bloque,depart,soluce)
 		super()
 		@etat,@bloque,@soluce = 2,bloque,soluce
 		@images= Array.new
@@ -22,7 +22,7 @@ class Cellule < Gtk::Button
 		@images.push Gtk::Image.new("../Images/button-yellow.png")
 		if(@bloque)
 			@etat = @soluce
-			relief = Gtk::RELIEF_NONE	#ne marche apparent pas(mais pe que sur mon pc), trouver qq chose dans le mm genre
+			relief = Gtk::RELIEF_NONE	#ne marche apparement pas(mais pe que sur mon pc), trouver qq chose dans le mm genre
 			modify_bg(Gtk::STATE_NORMAL, Gdk::Color.new(65535,20000, 20000))
 		end
 		modify_bg(Gtk::STATE_NORMAL, Gdk::Color.new(45000, 45000, 55000))
@@ -31,8 +31,8 @@ class Cellule < Gtk::Button
 		return @self
 	end
 	
-	def Cellule.creer(bloque,soluce)
-		cellule = new(bloque,soluce)
+	def Cellule.creer(bloque,depart,soluce)
+		cellule = new(bloque,depart,soluce)
 		
 		return cellule
 	end

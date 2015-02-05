@@ -2,35 +2,41 @@ require 'gtk2'
 
 class Theme
 	
-	@boutons
+	
 	@couleurPrincipale
 	@couleurSecondaire
+	@boutons
+	@numero
+	
 	
 	attr_reader :couleurPrincipale
 	attr_reader :couleurSecondaire
+	
 	def initialize(numero)
-		@boutons= Array.new
+		 @numero = numero
+		 @boutons = Array.new
 		
 		if(numero == 1)
-			@boutons.push Gtk::Image.new("../boutons/button-red.png")
-			@boutons.push Gtk::Image.new("../boutons/button-blue.png")
-			@boutons.push Gtk::Image.new("../boutons/button-yellow.png")
+			@boutons.push Gtk::Image.new("../Images/button-red.png")
+			@boutons.push Gtk::Image.new("../Images/button-blue.png")
+			@boutons.push Gtk::Image.new("../Images/button-yellow.png")
 			
 			@couleurPrincipale = nil
 			@couleurSecondaire = nil
 		elsif (numero == 2)
 			
-			@boutons.push Gtk::Image.new("../boutons/button-red.png")
-			@boutons.push Gtk::Image.new("../boutons/button-blue.png")
-			@boutons.push Gtk::Image.new("../boutons/button-yellow.png")
+			
+			@boutons.push Gtk::Image.new("../Images/button-blue.png")
+			@boutons.push Gtk::Image.new("../Images/button-yellow.png")
+			@boutons.push Gtk::Image.new("../Images/button-red.png")
 			
 			@couleurPrincipale = nil
 			@couleurSecondaire = nil
 		else 
 			
-			@boutons.push Gtk::Image.new("../boutons/button-red.png")
-			@boutons.push Gtk::Image.new("../boutons/button-blue.png")
-			@boutons.push Gtk::Image.new("../boutons/button-yellow.png")
+			@boutons.push Gtk::Image.new("../Images/button-yellow.png")
+			@boutons.push Gtk::Image.new("../Images/button-red.png")
+			@boutons.push Gtk::Image.new("../Images/button-blue.png")
 			
 			@couleurPrincipale = nil
 			@couleurSecondaire = nil
@@ -44,19 +50,31 @@ class Theme
 	def Theme.test
 	
 		Gtk.init
-	
+		
+		th1 = Theme.new(1)
 		window = Gtk::Window.new
 		window.signal_connect('destroy'){Gtk.main_quit}
-		3.times{|i|
-			a = Theme.new 1
-			3.times{|j|
-				puts a.image(j).file
+		
+		
+		
+		@@j = 0
+		
+			vb = Gtk::VBox.new
+			3.times{|i|
+				
+				button = Gtk::Button.new()
+				button.signal_connect('clicked'){
+					th1 = Theme.new(@@j)
+					button.set_image th1.image(@@j)
+					@@j=(@@j+1)%3
+				}
+				button.set_image th1.image((i)%3)
+				vb.add button
+				puts "case"
 			}
-		}
-		hb = Gtk::HBox.new
-		button = Gtk::Button.new().set_label("Coucou")
-		button.signal_connect('clicked'){Gtk.main_quit}
-		window.add hb.add button
+			
+		
+		window.add vb
 		
 		window.show_all
 		Gtk.main
@@ -65,4 +83,4 @@ class Theme
 end
 
 	
-Theme.test
+#Theme.test

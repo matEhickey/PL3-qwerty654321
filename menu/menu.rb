@@ -5,7 +5,7 @@
 
 require 'gtk2'
 require './../User/userInterface.rb'
-
+require './../User/user.rb'
 
 
 class Menu < Gtk::Builder
@@ -56,7 +56,9 @@ class Menu < Gtk::Builder
 		puts "appel a partie.rb avec la grille initialisee comme argument"
 	
 		#TODO cree le menu de selection de la grille, qui lui , appel la nouvelle partie
-		partie = UserInterface.new(@window1)
+		user = User.creerDefault("Mathias","fafzefz@xafezf.fr","ddsfsdgsdg")
+		defiday = User.creer("Bob","ytjfyytfj@tfthttf.fr","jygjyyjg","./../Images/bob.png")#remplacer par un objet defiday, que le serveur aura envoyer
+		partie = UserInterface.new(@window1,user,defiday)
 	
 			
 	end
