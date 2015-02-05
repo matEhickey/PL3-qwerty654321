@@ -43,6 +43,8 @@ class User
 	end
 	
 	
+	
+	
 	def to_s
 		return "#{@id}:#{@nom}, level #{@level}, experience #{@experience}"
 	end

@@ -37,9 +37,9 @@ class UserInterface < Gtk::Builder
      
      
     # chargement image compte user
-	puts @user.image
+	#puts @user.image
 	@boiteImageUser.add @user.image
-	puts @boiteImageUser
+	#puts @boiteImageUser
 	
 	#affichage de son nom
 	@boutonNom.label = @user.nom
@@ -107,14 +107,15 @@ def load_image
 		pipeReader,pipeWritter = IO.pipe
 		@selecteurDimage = SelecteurDimage.new(pipeWritter);
 		t1 = Thread.new(){
-				begin
+				#begin
 				filename = pipeReader.gets.delete!("\n")
-				#@imageUser.file=(filename)			activer cette ligne quand on saura comment redimensionner une image
+				puts "recu #{filename}"			
+				@imageUser.set Gdk::Pixbuf.new(filename,180,300)
 				
-					puts "Working, plus qu'a savoir comment redimensionner image"
-				rescue
-					puts "------Not working------"
-				end
+				#@window1.show_all
+				#rescue
+				#	puts "------Not working------"
+				#end
 		}
 		
 		

@@ -44,8 +44,8 @@ class SelecteurDimage < Gtk::Builder
       		image_file_name= @filechooserdialog1.filename
       		p image_file_name
       		begin
-      			@image1.file=(image_file_name)
       			
+      			puts @image1.set_pixbuf Gdk::Pixbuf.new(image_file_name,180,300)
       		rescue
       			puts "probleme chargement image #{image_file_name}"
       		end
