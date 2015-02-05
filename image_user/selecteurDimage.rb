@@ -24,6 +24,7 @@ class SelecteurDimage < Gtk::Builder
     
     @filter = Gtk::FileFilter.new
     @filter.add_pattern("*.jpg")
+    @filter.add_pattern("*.png")
     self['filechooserdialog1'].filter = @filter
     
     # Creation d'une variable d'instance par composant glade

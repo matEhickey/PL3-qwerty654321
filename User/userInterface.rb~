@@ -110,7 +110,7 @@ def load_image
 				#begin
 				filename = pipeReader.gets.delete!("\n")
 				puts "recu #{filename}"			
-				@imageUser.set_pixbuf Gdk::Pixbuf.new(filename,180,300)
+				@imageUser.set Gdk::Pixbuf.new(filename,180,300)
 				
 				#@window1.show_all
 				#rescue
