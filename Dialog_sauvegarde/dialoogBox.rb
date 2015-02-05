@@ -47,8 +47,9 @@ class DialoogBox < Gtk::Builder
 		
 		if(@finDuJeu)
 			begin
-				
-					@fenetrePartie.hide
+				@fenetrePartie.hide
+			rescue
+				puts "fenetre deja ferme"
 				
 			ensure
 				@fenetreUser.show

@@ -22,8 +22,11 @@ class Cellule < Gtk::Button
 		@images.push Gtk::Image.new("../Images/button-yellow.png")
 		if(@bloque)
 			@etat = @soluce
+			@depart = @etat
 			relief = Gtk::RELIEF_NONE	#ne marche apparement pas(mais pe que sur mon pc), trouver qq chose dans le mm genre
-			modify_bg(Gtk::STATE_NORMAL, Gdk::Color.new(65535,20000, 20000))
+			modify_bg(Gtk::STATE_NORMAL, Gdk::Color.new(0, 0, 0))
+		else
+			@depart = 2
 		end
 		modify_bg(Gtk::STATE_NORMAL, Gdk::Color.new(45000, 45000, 55000))
 		set_image @images.at(@etat)	#image de la case vide
@@ -51,7 +54,7 @@ class Cellule < Gtk::Button
 	end
 	
 	def raz
-		@etat = 2;
+		@etat = @depart;
 		set_image @images.at(@etat)
 	end
 	

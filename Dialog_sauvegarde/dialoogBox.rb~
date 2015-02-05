@@ -47,9 +47,8 @@ class DialoogBox < Gtk::Builder
 		
 		if(@finDuJeu)
 			begin
-				if(!@fenetrePartie.nil)
-					@fenetrePartie.hide
-				end
+				@fenetrePartie.hide
+				
 			ensure
 				@fenetreUser.show
 				@dialog1.destroy
