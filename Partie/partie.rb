@@ -8,6 +8,7 @@ require './../socket/Sauvegarde.rb'
 require './../Dialog_sauvegarde/dialoogBox.rb'
 require './../Partie/cellule.rb'
 require './../timer/Timer.rb'
+require './../Regles/affichRegles.rb'
 
 
 
@@ -144,6 +145,11 @@ class Partie < Gtk::Builder
 			
 		end
 		
+	end
+	
+	
+	def afficher_regles
+		AffichRegle.new
 	end
 	
 	def sauvegarde

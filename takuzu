@@ -1,6 +1,0 @@
-#!/bin/bash
-
-cd ~/takuzu/menu;
-ruby menu.rb;
-exit;
-

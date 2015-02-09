@@ -4,12 +4,11 @@ require 'active_record'
 
 #require './connectSqlite3.rb'
 
-class User < ActiveRecord::Base
+class Zombie < ActiveRecord::Base
 @id
 @name
 @status
 #validates_presence_of :name
-
 
 end
 
@@ -18,5 +17,3 @@ a.id = 1
 a.name = "John"
 a.status = "love brains"
 a.save
-
-puts User

@@ -8,6 +8,7 @@ require './../socket/Sauvegarde.rb'
 require './../Dialog_sauvegarde/dialoogBox.rb'
 require './../Partie/cellule.rb'
 require './../timer/Timer.rb'
+require './../Regles/affichRegles.rb'
 
 
 
@@ -69,7 +70,7 @@ class Partie < Gtk::Builder
 		ligne = Array.new
 		0.upto(@taille-1){|j|
 			if(@tabGrille.at((i*@taille)+j) == '_')
-				cellule = Cellule.creer(false,2,@tabGrille.at((i*@taille)+j))
+				cellule = Cellule.creer(false,2,@tabGrille.at((i*@taille)+j).to_i)
 			else
 				cellule = Cellule.creer(true,@tabGrille.at((i*@taille)+j).to_i,@tabSoluce.at((i*@taille)+j).to_i)
 			end
@@ -144,6 +145,11 @@ class Partie < Gtk::Builder
 			
 		end
 		
+	end
+	
+	
+	def afficher_regles
+		AffichRegle.new
 	end
 	
 	def sauvegarde
